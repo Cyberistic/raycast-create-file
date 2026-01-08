@@ -13,15 +13,11 @@ interface CreateFileHereArguments {
   fileName: string;
 }
 
-interface Preferences {
-  disableClipboardFallback: boolean;
-}
-
 export default async (props: LaunchProps<{ arguments: CreateFileHereArguments }>) => {
   await closeMainWindow();
 
   try {
-    const preferences = getPreferenceValues<Preferences>();
+    const preferences = getPreferenceValues<Preferences.CreateFileHere>();
 
     // Parse the filename
     const { name, extension } = parseFileName(props.arguments.fileName || "default.txt");
